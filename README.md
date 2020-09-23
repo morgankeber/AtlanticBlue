@@ -1,18 +1,23 @@
 # AtlanticBlue
 
-Configuration.h, Configuration_adv.h, and platformio.ini files to build Marlin 2.0 for the SKR Mini E3 V2 board and the Wanhao Duplicator i3 Plus (v1) printer.
+Configuration.h, Configuration_adv.h, and platformio.ini files to build Marlin 2.0 for the SKR mini E3 V2.0 board and the Wanhao Duplicator i3 Plus (v1) printer.
 
 ## AtlanticBlue Rresources
 
+In no particular order...
+
 ### Hardware
 
-  - [Sebastien Andrivet's Hardware-Information](http://sebastien.andrivet.com/en/posts/wanhao-duplicator-i3-plus-3d-printers/)
-  - [As above - archive June 2020](https://web.archive.org/web/20200601210853/http://sebastien.andrivet.com/en/posts/wanhao-duplicator-i3-plus-3d-printers/)
+  - [Sebastien Andrivet's Wanhao Duplicator i3 Plus hardware-information](http://sebastien.andrivet.com/en/posts/wanhao-duplicator-i3-plus-3d-printers/)
+\([archive](https://web.archive.org/web/20200601210853/http://sebastien.andrivet.com/en/posts/wanhao-duplicator-i3-plus-3d-printers/)\)
+  - [BIGTREETECH - SKR mini E3 V2.0 hardware](https://github.com/bigtreetech/BIGTREETECH-SKR-mini-E3/tree/master/hardware/BTT%20SKR%20MINI%20E3%20V2.0/Hardware)
 
 ### Firmware
 
   - [Marlin Firmware](https://github.com/MarlinFirmware)
-
+  - [BIGTREETECH - SKR mini E3 V2.0 firmware binaries and source-code](https://github.com/bigtreetech/BIGTREETECH-SKR-mini-E3/tree/master/firmware/V2.0)
+  - [Sebastien Andrivet's ADVi3++ - custom firmware for the Wanhao Duplicator i3 Plus](https://github.com/andrivet/ADVi3pp)
+  - [Qwewer's Marlin 2.0.x guide, SKR Mini E3 v1.2, Ender 3 guide](https://www.reddit.com/r/ender3/comments/h8y1ia/marlin_20x_guide_skr_mini_e3_v20_ender_3/)
 
 # Marlin 3D Printer Firmware
 
