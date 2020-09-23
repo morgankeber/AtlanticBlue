@@ -71,7 +71,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(AtlanticBlue)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -104,13 +104,15 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT 0
+//#define SERIAL_PORT 0  // Default - enabled
+#define SERIAL_PORT 2    // @atlanticblue - re: u/qwewer1
 
 /**
  * Select a secondary serial port on the board to use for communication with the host.
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-//#define SERIAL_PORT_2 -1
+//#define SERIAL_PORT_2 -1  // Default - disabled
+#define SERIAL_PORT_2 -1    // @atlanticblue - re: u/qwewer1
 
 /**
  * This setting determines the communication speed of the printer.
@@ -121,18 +123,21 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 250000
+//#define BAUDRATE 250000  // Default
+#define BAUDRATE 115200    // @atlanticblue - re: u/qwewer1
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_RAMPS_14_EFB
+  //#define MOTHERBOARD BOARD_RAMPS_14_EFB  // Default
+  #define MOTHERBOARD BOARD_BTT_SKR_MINI_E3_V2_0  // @atlanticblue - re: u/qwewer1
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-//#define CUSTOM_MACHINE_NAME "3D Printer"
+//#define CUSTOM_MACHINE_NAME "3D Printer"  // Default - disabled
+#define CUSTOM_MACHINE_NAME "Wanhao Di3+"  // @atlanticblue
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -424,7 +429,8 @@
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
-#define TEMP_SENSOR_BED 0
+//#define TEMP_SENSOR_BED 0  // Default
+#define TEMP_SENSOR_BED 1    // @atlanticblue
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0
 
@@ -467,8 +473,9 @@
 #define HEATER_4_MAXTEMP 275
 #define HEATER_5_MAXTEMP 275
 #define HEATER_6_MAXTEMP 275
-#define HEATER_7_MAXTEMP 275
-#define BED_MAXTEMP      150
+//#define HEATER_7_MAXTEMP 275
+//#define BED_MAXTEMP 150  // Default
+#define BED_MAXTEMP 110    // @atlanticblue - conservative, potentially bump to 170 (re advipp)
 
 //===========================================================================
 //============================= PID Settings ================================
@@ -489,10 +496,17 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
-  // Ultimaker
-  #define DEFAULT_Kp 22.2
-  #define DEFAULT_Ki 1.08
-  #define DEFAULT_Kd 114
+  // Wanhao Di3+
+  // @atlanticblue - re advi3pp
+  // Will require alteration for non-standard hotend
+  #define DEFAULT_Kp 33.41
+  #define DEFAULT_Ki 1.47
+  #define DEFAULT_Kd 189.27
+
+  // Ultimaker - Default
+  //#define DEFAULT_Kp 22.2
+  //#define DEFAULT_Ki 1.08
+  //#define DEFAULT_Kd 114
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -523,7 +537,8 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-//#define PIDTEMPBED
+//#define PIDTEMPBED  // Default - disabled
+#define PIDTEMPBED    // @atlanticblue - re advi3pp
 
 //#define BED_LIMIT_SWITCHING
 
@@ -539,11 +554,18 @@
   //#define MIN_BED_POWER 0
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
+  // Wanhao Di3+
+  // @atlanticblue - re advi3pp
+  #define DEFAULT_bedKp 333.66
+  #define DEFAULT_bedKi 60.79
+  #define DEFAULT_bedKd 457.83
+
+  // Default
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define DEFAULT_bedKp 10.00
-  #define DEFAULT_bedKi .023
-  #define DEFAULT_bedKd 305.4
+  //#define DEFAULT_bedKp 10.00
+  //#define DEFAULT_bedKi .023
+  //#define DEFAULT_bedKd 305.4
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -701,6 +723,13 @@
 //#define E6_DRIVER_TYPE A4988
 //#define E7_DRIVER_TYPE A4988
 
+// SKR E3 Mini V2.0
+// @atlanticblue - re u/qwewer1
+#define X_DRIVER_TYPE  TMC2209
+#define Y_DRIVER_TYPE  TMC2209
+#define Z_DRIVER_TYPE  TMC2209
+#define E0_DRIVER_TYPE TMC2209
+
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
 //#define ENDSTOP_INTERRUPTS_FEATURE
@@ -747,14 +776,19 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
+// @atlanticblue - re advi3pp
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }  // Default
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93.0 }    // Wanhao Di3++
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+// @atlanticblue - re advi3pp
+// Adjust for Titan
+//#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }  // Default
+#define DEFAULT_MAX_FEEDRATE          { 450, 450, 20, 25 }   // Wanhao Di3++
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -782,9 +816,16 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration for printing moves
+// Defaults
+//#define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration for printing moves
+//#define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
+//#define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+
+// Wanhao Di3+
+// @atlanticblue - re advi3pp
+#define DEFAULT_ACCELERATION          800     // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION   800     // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -808,7 +849,11 @@
   #endif
 #endif
 
-#define DEFAULT_EJERK    5.0  // May be used by Linear Advance
+// @atlanticblue - use lower value from previous versions
+// TODO: Possibly increase value towards 5.0
+//       Ender 3 uses "15.0"
+//#define DEFAULT_EJERK    5.0  // Default
+#define DEFAULT_EJERK    1.0  // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
@@ -817,6 +862,7 @@
  *   https://reprap.org/forum/read.php?1,739819
  *   https://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
  */
+// @atlanticblue - Use junction-deviation (not classic jerk)
 #if DISABLED(CLASSIC_JERK)
   #define JUNCTION_DEVIATION_MM 0.013 // (mm) Distance from real junction edge
   #define JD_HANDLE_SMALL_SEGMENTS    // Use curvature estimation instead of just the junction angle
@@ -831,7 +877,8 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-//#define S_CURVE_ACCELERATION
+//#define S_CURVE_ACCELERATION  // Default - disabled
+#define S_CURVE_ACCELERATION    // @atlanticblue (not using Linear Advance)
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -1093,14 +1140,15 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false
+//#define INVERT_X_DIR false  // Default
+#define INVERT_X_DIR true    // @atlanticblue - Wanhao Di3+
 #define INVERT_Y_DIR true
 #define INVERT_Z_DIR false
 
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR false  // @atlanticblue - 'false' for standard Di3+ extruder, invert for Titan
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -1128,17 +1176,25 @@
 
 // @section machine
 
+// @atlanticblue
+// Official Wanhao print-volume dimensions:
+// X - 200mm
+// Y - 200mm
+// Z - 180mm
+
 // The size of the print bed
 #define X_BED_SIZE 200
 #define Y_BED_SIZE 200
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0
+//#define X_MIN_POS 0   // Default
+#define X_MIN_POS -5.0  // @atlanticblue - re advi3pp
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 200
+//#define Z_MAX_POS 200  // Default
+#define Z_MAX_POS 170    // @atlanticblue - conservative
 
 /**
  * Software Endstops
@@ -1400,8 +1456,10 @@
 #endif
 
 // Homing speeds (mm/min)
-#define HOMING_FEEDRATE_XY (50*60)
-#define HOMING_FEEDRATE_Z  (4*60)
+//#define HOMING_FEEDRATE_XY (50*60)
+//#define HOMING_FEEDRATE_Z  (4*60)
+#define HOMING_FEEDRATE_XY 6000  // @atlanticblue - re advi3pp
+#define HOMING_FEEDRATE_Z  1200  // @atlanticblue - re advi3pp
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -1478,12 +1536,15 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-//#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
+// @atlanticblue - enable EPROM storage
+//#define EEPROM_SETTINGS     // Default - disabled
+#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
 #define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #define EEPROM_BOOT_SILENT    // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
-  //#define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
+  //#define EEPROM_AUTO_INIT  // Default
+  #define EEPROM_AUTO_INIT  // @atlanticblue
 #endif
 
 //
@@ -1530,7 +1591,8 @@
  *    P1  Raise the nozzle always to Z-park height.
  *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS.
  */
-//#define NOZZLE_PARK_FEATURE
+//#define NOZZLE_PARK_FEATURE  // Default - disabled
+#define NOZZLE_PARK_FEATURE    // @atlanticblue - enabled
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
@@ -1733,7 +1795,8 @@
  * you must uncomment the following option or it won't work.
  *
  */
-//#define SDSUPPORT
+//#define SDSUPPORT // Default - disabled
+#define SDSUPPORT   // @atlanticblue - enabled (because board has it), but it likely wont be physically accesible
 
 /**
  * SD CARD: SPI SPEED
@@ -2288,7 +2351,8 @@
 // Use software PWM to drive the fan, as for the heaters. This uses a very low frequency
 // which is not as annoying as with the hardware PWM. On the other hand, if this frequency
 // is too low, you should also increment SOFT_PWM_SCALE.
-//#define FAN_SOFT_PWM
+//#define FAN_SOFT_PWM  // Default - disabled
+#define FAN_SOFT_PWM    // @atlanticblue - enabled for board
 
 // Incrementing this by 1 will double the software PWM frequency,
 // affecting heaters, and the fan if FAN_SOFT_PWM is enabled.
