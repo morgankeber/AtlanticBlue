@@ -1,3 +1,7 @@
+# AtlanticBlue
+
+Configuration.h, Configuration_adv.h, and platformio.ini files to build Marlin 2.0 for the SKR Mini E3 V2 board and the Wanhao Duplicator i3 Plus (v1) printer.
+
 # Marlin 3D Printer Firmware
 
 ![GitHub](https://img.shields.io/github/license/marlinfirmware/marlin.svg)
