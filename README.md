@@ -6,12 +6,12 @@ Configuration.h, Configuration_adv.h, and platformio.ini files to build Marlin 2
 
 ### Hardware
 
-[Sebastien Andrivet's Hardware-Information](http://sebastien.andrivet.com/en/posts/wanhao-duplicator-i3-plus-3d-printers/)
-[As above - archive June 2020](https://web.archive.org/web/20200601210853/http://sebastien.andrivet.com/en/posts/wanhao-duplicator-i3-plus-3d-printers/)
+  - [Sebastien Andrivet's Hardware-Information](http://sebastien.andrivet.com/en/posts/wanhao-duplicator-i3-plus-3d-printers/)
+  - [As above - archive June 2020](https://web.archive.org/web/20200601210853/http://sebastien.andrivet.com/en/posts/wanhao-duplicator-i3-plus-3d-printers/)
 
 ### Firmware
 
-[Marlin Firmware](https://github.com/MarlinFirmware)
+  - [Marlin Firmware](https://github.com/MarlinFirmware)
 
 
 # Marlin 3D Printer Firmware
