@@ -18,6 +18,7 @@ In no particular order...
   - [BIGTREETECH - SKR mini E3 V2.0 firmware binaries and source-code](https://github.com/bigtreetech/BIGTREETECH-SKR-mini-E3/tree/master/firmware/V2.0)
   - [Sebastien Andrivet's ADVi3++ - custom firmware for the Wanhao Duplicator i3 Plus](https://github.com/andrivet/ADVi3pp)
   - [Qwewer's Marlin 2.0.x guide, SKR Mini E3 v1.2, Ender 3 guide](https://www.reddit.com/r/ender3/comments/h8y1ia/marlin_20x_guide_skr_mini_e3_v20_ender_3/)
+\([archive](https://web.archive.org/web/20200704165041if_/https://www.reddit.com/r/ender3/comments/h8y1ia/marlin_20x_guide_skr_mini_e3_v20_ender_3/)\)
 
 # Marlin 3D Printer Firmware
 
