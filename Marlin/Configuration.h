@@ -788,7 +788,8 @@
  */
 // @atlanticblue - re advi3pp
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }  // Default
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93.0 }    // Wanhao Di3++
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93.0 }  // Wanhao Di3+
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 372.0 }   // Wanhao Di3+ with Titan clone
 
 /**
  * Default Max Feed Rate (mm/s)

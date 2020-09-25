@@ -649,6 +649,7 @@
 #define HOMING_BUMP_DIVISOR { 2, 2, 4 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (mm) Backoff from endstops after homing
+#define HOMING_BACKOFF_POST_MM { 2, 2, 8 }  // @atlanticblue - Dont sit on endstops
 
 #define QUICK_HOME                            // @atlanticblue - If G28 contains XY do a diagonal move first (default disabled)
 //#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
@@ -2315,8 +2316,8 @@
   #endif
 
   #if AXIS_IS_TMC(E0)
-    // @atlanticblue - (1.02*0.8)/1.414 = 0.577
-    #define E0_CURRENT      500         // (mA) RMS current. Multiply by 1.414 for peak current. (default - '800')
+    // @atlanticblue - (0.7*0.8)/1.414 = 0.396
+    #define E0_CURRENT      350         // (mA) RMS current. Multiply by 1.414 for peak current. (default - '800')
     #define E0_MICROSTEPS    16
     #define E0_RSENSE         0.11
     #define E0_CHAIN_POS     -1
@@ -2437,6 +2438,7 @@
    * function through a communication line such as SPI or UART.
    */
   //#define SOFTWARE_DRIVER_ENABLE
+  // @atlanticblue - ^ Investigate
 
   /**
    * TMC2130, TMC2160, TMC2208, TMC2209, TMC5130 and TMC5160 only
@@ -2475,7 +2477,7 @@
    * M912 - Clear stepper driver overtemperature pre-warn condition flag.
    * M122 - Report driver parameters (Requires TMC_DEBUG)
    */
-  //#define MONITOR_DRIVER_STATUS
+  #define MONITOR_DRIVER_STATUS  // @atlanticblue (default - disabled)
 
   #if ENABLED(MONITOR_DRIVER_STATUS)
     #define CURRENT_STEP_DOWN     50  // [mA]
@@ -2570,7 +2572,7 @@
    * Enable M122 debugging command for TMC stepper drivers.
    * M122 S0/1 will enable continous reporting.
    */
-  //#define TMC_DEBUG
+  #define TMC_DEBUG  // @atlanticblue (default - disabled)
 
   /**
    * You can set your own advanced settings by filling in predefined functions.
